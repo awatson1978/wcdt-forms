@@ -1,0 +1,10 @@
+
+screenshots
+logs
+reports
+
+screenshots/*
+logs/*
+reports/*
+
+.env

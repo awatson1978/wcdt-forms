@@ -1,0 +1,63 @@
+<head>
+  <title>CKCC</title>
+</head>
+
+
+
+<template name="appLayout">
+
+    {{> yield 'header'}}
+
+      {{> errorPanel }}
+      {{> formBuilderPanel }}
+      {{> leftDock }}
+
+      {{> rightDock }}
+
+      <div class="hidden">{{resized}}</div>
+
+      {{> yield 'sidebar'}}
+
+      <div id="mainPanel" class="helveticas" style="{{getStyle}} {{getNorthRule}}">
+        {{> yield }}
+      </div>
+      <div id="secondPanel" class="helveticas" style="{{getSecondPanelStyle}} {{getNorthRule}}">
+        {{> yield 'secondPage'}}
+      </div>
+
+
+
+
+    {{> reactiveOverlaysTemplate }}
+
+    <!-- {{> yield 'footer'}} -->
+    <footer id="navbarFooter" style="{{getOpacity}} {{isVisible}} {{getNavWidth}}">
+      {{#if isLoggedIn}}
+        <button id="addCollaborationButton">New Collaboration</button>
+        <button id="saveCollaborationButton">Save Collaboration</button>
+        <button id="newQuestionnaireBtn">New Questionnaire</button>
+        <button id="saveFormButton">Save Questionnaire</button>
+        <button id="saveDataButton">Save Data</button>
+      {{/if}}
+
+      {{> yield 'footerActionElements' }}
+
+      <div class="eastLinks">
+        <button id="keybindingsBtn">Keybindings</button>
+      </div>
+
+    </footer>
+
+  {{> keybindingsModal }}
+  {{> userPicklistModal }}
+  {{> studyPicklistModal }}
+  {{> collaborationPicklistModal }}
+
+</template>
+
+
+<template name="secondPage">
+  <div id="secondPage" class="secondPage">
+
+  </div>
+</template>

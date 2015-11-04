@@ -1,0 +1,45 @@
+<template name="builderPage">
+  <div id="builderPage" class="page" style="{{getOpacity}}">
+    <div class="hidden">{{resized}}</div>
+    <div id="sortableListPanel">
+      <div class="col col-md-12">
+        <input id="formTitleInput" type="text" class="form-control" placeholder="Sample Form Name...." value="{{formName}}">
+      </div>
+      <div id="questionnaireDesigner" class="col col-md-12">
+        {{#autoForm
+          id="questionnaireDesignerAutoform"
+          collection="Items"
+          type="insert"
+          doc=this
+          schema=getBasicSchema
+        }}
+
+        {{#each schemaFieldNames}}
+
+          {{#if isInput this}}
+            <div class="item {{isSelected 'textInputBlock'}}">
+              <div class="textInputBlock horizontally-padded">
+                <label class="blockLabel">{{getLabelText this}}</label>
+                {{> afFieldInput name=this schema=getThisSchema autocomplete="off"}}
+              </div>
+            </div>
+          {{/if}}
+
+          {{#if isTextarea this}}
+            <div class="item {{isSelected 'textareaInputBlock'}} ">
+              <div class="textareaBlock horizontally-padded">
+                  <label class="blockLabel">{{getLabelText this}}</label>
+                  {{> afFieldInput name=this schema=getThisSchema autocomplete="off"}}
+                </div>
+            </div>
+          {{/if}}
+        {{/each}}
+
+        {{/autoForm}}
+      </div>
+    </div>
+    <div id="sortableDropZone" class="centered dragdropzone">
+        <h2>drop here!</h2>
+    </div>
+  </div>
+</template>
